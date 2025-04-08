@@ -24,6 +24,7 @@ void Zipfian(const int write, const int read, SkipList<Key>& sl) {
     for (int i = 1; i <= write; ++i) {
         Key key = nextValue() % write+1;        
         sl.Insert(key);
+        sl.Print();
     }
     auto w_end = Clock::now();
     std::cout << "After Insert\n";
@@ -56,6 +57,7 @@ void Uniform(const int write, const int read, SkipList<Key>& sl) {
     auto w_start = Clock::now();
     for (int i = 1; i <= write; ++i) {
         sl.Insert(distr(gen)+1);
+        sl.Print();
     }
     auto w_end = Clock::now();
     std::cout << "After Insert\n";
@@ -82,6 +84,7 @@ void RevSequential(const int write, const int read, SkipList<Key>& sl) {
     auto w_start = Clock::now();
     for (int i = write; i > 0; i--) {
         sl.Insert(i);
+        sl.Print();
     }
     auto w_end = Clock::now();
     std::cout << "After Insert\n";
@@ -108,6 +111,7 @@ void Sequential(const int write, const int read, SkipList<Key>& sl) {
     auto w_start = Clock::now();
     for (int i = 1; i <= write; ++i) {
         sl.Insert(i);
+        sl.Print();
     }
     auto w_end = Clock::now();
     std::cout << "After Insert\n";
@@ -138,6 +142,7 @@ void Zipfian_Delete(const int write, const int read, SkipList<Key>& sl) {
     for (int i = 1; i <= write; ++i) {
         Key key = nextValue() % write+1;        
         sl.Insert(key);
+        sl.Print();
     }
     auto w_end = Clock::now();
     std::cout << "After Insert\n";
@@ -170,6 +175,7 @@ void Uniform_Delete(const int write, const int read, SkipList<Key>& sl) {
     auto w_start = Clock::now();
     for (int i = 1; i <= write; ++i) {
         sl.Insert(distr(gen)+1);
+        sl.Print();
     }
     auto w_end = Clock::now();
     std::cout << "After Insert\n";
@@ -201,6 +207,7 @@ void Uniform_Scan(const int write, const int read, SkipList<Key> &sl) {
         //Key key = distr(gen)+1;
         Key key = i;
         sl.Insert(key);
+        sl.Print();
     }
     auto w_end = Clock::now();
     printf("After Insert\n");
@@ -214,7 +221,7 @@ void Uniform_Scan(const int write, const int read, SkipList<Key> &sl) {
     float r_time, w_time;
     r_time = std::chrono::duration_cast<std::chrono::nanoseconds>(r_end - r_start).count() * 0.001;
     w_time = std::chrono::duration_cast<std::chrono::nanoseconds>(w_end - w_start).count() * 0.001;
-    printf("\n[Uniform-Scan] Insertion = %.2lf µs, Lookup = %.2lf µs\n", w_time / read, r_time / read);
+    printf("\n[Uniform-Scan] Insertion = %.2lf µs, Lookup = %.2lf µs\n", w_time, r_time);
 }
 
 void printUsage(const char* programName) {
